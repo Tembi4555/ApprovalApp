@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ApprovalApp.API</name>
+    </assembly>
+    <members>
+        <member name="M:ApprovalApp.API.Controllers.PersonsController.GetPersonsAsync">
+            <summary>
+            Список персон
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ApprovalApp.API.Controllers.PersonsController.CreatePersonAsync(ApprovalApp.API.Contracts.Requests.PersonsRequest)">
+            <summary>
+            Добавление персоны
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ApprovalApp.API.Controllers.PersonsController.UpdatePersonAsync(System.Int64,ApprovalApp.API.Contracts.Requests.PersonsRequest)">
+            <summary>
+            Изменение персоны
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ApprovalApp.API.Migrations.Initial">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprovalApp.API.Migrations.Initial.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprovalApp.API.Migrations.Initial.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprovalApp.API.Migrations.Initial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

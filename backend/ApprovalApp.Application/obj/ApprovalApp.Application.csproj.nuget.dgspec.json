@@ -1,0 +1,190 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\projects\\ApprovalApp\\backend\\ApprovalApp.Application\\ApprovalApp.Application.csproj": {}
+  },
+  "projects": {
+    "D:\\projects\\ApprovalApp\\backend\\ApprovalApp.Application\\ApprovalApp.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\projects\\ApprovalApp\\backend\\ApprovalApp.Application\\ApprovalApp.Application.csproj",
+        "projectName": "ApprovalApp.Application",
+        "projectPath": "D:\\projects\\ApprovalApp\\backend\\ApprovalApp.Application\\ApprovalApp.Application.csproj",
+        "packagesPath": "C:\\Users\\AVGrushev\\.nuget\\packages\\",
+        "outputPath": "D:\\projects\\ApprovalApp\\backend\\ApprovalApp.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\AVGrushev\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "D:\\projects\\ApprovalApp\\backend\\ApprovalApp.Data\\ApprovalApp.Data.csproj": {
+                "projectPath": "D:\\projects\\ApprovalApp\\backend\\ApprovalApp.Data\\ApprovalApp.Data.csproj"
+              },
+              "D:\\projects\\ApprovalApp\\backend\\ApprovalApp.Domain\\ApprovalApp.Domain.csproj": {
+                "projectPath": "D:\\projects\\ApprovalApp\\backend\\ApprovalApp.Domain\\ApprovalApp.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\projects\\ApprovalApp\\backend\\ApprovalApp.Data\\ApprovalApp.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\projects\\ApprovalApp\\backend\\ApprovalApp.Data\\ApprovalApp.Data.csproj",
+        "projectName": "ApprovalApp.Data",
+        "projectPath": "D:\\projects\\ApprovalApp\\backend\\ApprovalApp.Data\\ApprovalApp.Data.csproj",
+        "packagesPath": "C:\\Users\\AVGrushev\\.nuget\\packages\\",
+        "outputPath": "D:\\projects\\ApprovalApp\\backend\\ApprovalApp.Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\AVGrushev\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "D:\\projects\\ApprovalApp\\backend\\ApprovalApp.Domain\\ApprovalApp.Domain.csproj": {
+                "projectPath": "D:\\projects\\ApprovalApp\\backend\\ApprovalApp.Domain\\ApprovalApp.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[8.0.11, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\projects\\ApprovalApp\\backend\\ApprovalApp.Domain\\ApprovalApp.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\projects\\ApprovalApp\\backend\\ApprovalApp.Domain\\ApprovalApp.Domain.csproj",
+        "projectName": "ApprovalApp.Domain",
+        "projectPath": "D:\\projects\\ApprovalApp\\backend\\ApprovalApp.Domain\\ApprovalApp.Domain.csproj",
+        "packagesPath": "C:\\Users\\AVGrushev\\.nuget\\packages\\",
+        "outputPath": "D:\\projects\\ApprovalApp\\backend\\ApprovalApp.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\AVGrushev\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
