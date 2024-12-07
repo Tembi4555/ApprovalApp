@@ -3,6 +3,7 @@ using System;
 using ApprovalApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApprovalApp.API.Migrations
 {
     [DbContext(typeof(ApprovalDbContext))]
-    partial class ApprovalDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241207175935_TicketsTable")]
+    partial class TicketsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.11");
@@ -34,45 +37,6 @@ namespace ApprovalApp.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Persons", (string)null);
-                });
-
-            modelBuilder.Entity("ApprovalApp.Data.Entities.TicketApprovalEntity", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<long>("ApprovingPersonId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Comment")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Iteration")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("ModifiedDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("NumberQueue")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
-                        .HasDefaultValue("Новая");
-
-                    b.Property<long>("TicketId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApprovingPersonId");
-
-                    b.HasIndex("TicketId");
-
-                    b.ToTable("TicketsApprovals", (string)null);
                 });
 
             modelBuilder.Entity("ApprovalApp.Data.Entities.TicketEntity", b =>
@@ -104,25 +68,6 @@ namespace ApprovalApp.API.Migrations
                     b.ToTable("Tickets", (string)null);
                 });
 
-            modelBuilder.Entity("ApprovalApp.Data.Entities.TicketApprovalEntity", b =>
-                {
-                    b.HasOne("ApprovalApp.Data.Entities.PersonEntity", "Person")
-                        .WithMany("TicketApprovalEntities")
-                        .HasForeignKey("ApprovingPersonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ApprovalApp.Data.Entities.TicketEntity", "Ticket")
-                        .WithMany("TicketApprovalEntities")
-                        .HasForeignKey("TicketId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Person");
-
-                    b.Navigation("Ticket");
-                });
-
             modelBuilder.Entity("ApprovalApp.Data.Entities.TicketEntity", b =>
                 {
                     b.HasOne("ApprovalApp.Data.Entities.PersonEntity", "Person")
@@ -136,14 +81,7 @@ namespace ApprovalApp.API.Migrations
 
             modelBuilder.Entity("ApprovalApp.Data.Entities.PersonEntity", b =>
                 {
-                    b.Navigation("TicketApprovalEntities");
-
                     b.Navigation("Tickets");
-                });
-
-            modelBuilder.Entity("ApprovalApp.Data.Entities.TicketEntity", b =>
-                {
-                    b.Navigation("TicketApprovalEntities");
                 });
 #pragma warning restore 612, 618
         }

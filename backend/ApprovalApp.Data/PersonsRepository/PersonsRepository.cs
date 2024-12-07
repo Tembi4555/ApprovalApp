@@ -19,20 +19,20 @@ namespace ApprovalApp.Data.PersonsRepository
             _context = context;
         }
 
-        public async Task<List<PersonDto>> GetAsync()
+        public async Task<List<Person>> GetAsync()
         {
-            List<Person> persons = await _context.Persons.AsNoTracking().ToListAsync();
+            List<PersonEntity> persons = await _context.Persons.AsNoTracking().ToListAsync();
 
             // Mapping
-            List<PersonDto> personsDtos = persons.Select(p => PersonDto.Create(p.Id, p.FullName, p.DateBirth).PersonDto)
+            List<Person> personsDtos = persons.Select(p => Person.Create(p.Id, p.FullName, p.DateBirth).Person)
                 .ToList();
 
             return personsDtos;
         }
 
-        public async Task<long> CreateAsync(PersonDto personDto)
+        public async Task<long> CreateAsync(Person personDto)
         {
-            Person person = new Person
+            PersonEntity person = new PersonEntity
             {
                 Id = personDto.Id,
                 FullName = personDto.FullName,
@@ -45,7 +45,7 @@ namespace ApprovalApp.Data.PersonsRepository
             return person.Id;
         }
 
-        public async Task<long> UpdateAsync(PersonDto personDto)
+        public async Task<long> UpdateAsync(Person personDto)
         {
             await _context.Persons
                 .Where(p => p.Id == personDto.Id)

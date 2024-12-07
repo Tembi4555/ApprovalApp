@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ApprovalApp.Domain.Models
 {
-    public class PersonDto
+    public class Person
     {
-        private PersonDto(long id, string? fullName, DateTime dateBirth)
+        private Person(long id, string? fullName, DateTime dateBirth)
         {
             Id = id;
             FullName = fullName;
@@ -21,7 +22,8 @@ namespace ApprovalApp.Domain.Models
         public string? FullName { get; }
         public DateTime DateBirth { get; }
 
-        public static (PersonDto PersonDto, string Error) Create(long id, string? fullName, DateTime dateBirth)
+        public static (Person Person, string Error) Create(long id, string? fullName, 
+            DateTime dateBirth)
         {
             string error = string.Empty;    
             if(String.IsNullOrEmpty(fullName))
@@ -29,7 +31,7 @@ namespace ApprovalApp.Domain.Models
                 error = "Имя сотрудника не должно быть пустым";
             }
 
-            PersonDto person = new PersonDto(id, fullName, dateBirth);
+            Person person = new Person(id, fullName, dateBirth);
 
             return (person, error);
         }

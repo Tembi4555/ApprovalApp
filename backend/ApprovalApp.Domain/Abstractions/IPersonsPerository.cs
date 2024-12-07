@@ -9,10 +9,10 @@ namespace ApprovalApp.Domain.Abstractions
 {
     public interface IPersonsPerository
     {
-        Task<List<PersonDto>> GetAsync();
+        Task<List<Person>> GetAsync();
 
-        Task<long> CreateAsync(PersonDto personDto);
+        Task<long> CreateAsync(Person personDto);
 
-        Task<long> UpdateAsync(PersonDto personDto);
+        Task<long> UpdateAsync(Person personDto);
     }
 }

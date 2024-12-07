@@ -11,17 +11,17 @@ namespace ApprovalApp.Application
             _personsPerository = personsPerository; 
         }
 
-        public async Task<List<PersonDto>> GetAllPersonsAsync()
+        public async Task<List<Person>> GetAllPersonsAsync()
         {
             return await _personsPerository.GetAsync();
         }
 
-        public async Task<long> CreatePersonAsync(PersonDto personDto)
+        public async Task<long> CreatePersonAsync(Person personDto)
         {
             return await _personsPerository.CreateAsync(personDto);
         }
 
-        public async Task<long> UpdatePersonAsync(PersonDto personDto)
+        public async Task<long> UpdatePersonAsync(Person personDto)
         {
             return await _personsPerository.UpdateAsync(personDto);
         }

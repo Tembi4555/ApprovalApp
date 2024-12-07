@@ -14,6 +14,10 @@ namespace ApprovalApp.API.Controllers
     {
         private readonly IPersonsService _personsService;
 
+        /// <summary>
+        /// Конструктор для Person
+        /// </summary>
+        /// <param name="personsService"></param>
         public PersonsController(IPersonsService personsService)
         {
             _personsService = personsService;
@@ -26,7 +30,7 @@ namespace ApprovalApp.API.Controllers
         [HttpGet]
         public async Task<ActionResult<List<PersonsResponse>>> GetPersonsAsync()
         {
-            List<PersonDto> personDtos = await _personsService.GetAllPersonsAsync();
+            List<Person> personDtos = await _personsService.GetAllPersonsAsync();
 
             List<PersonsResponse> response = personDtos
                 .Select(p => new PersonsResponse(p.Id, p.FullName, p.DateBirth))
@@ -43,7 +47,7 @@ namespace ApprovalApp.API.Controllers
         [HttpPost]
         public async Task<ActionResult<long>> CreatePersonAsync([FromBody] PersonsRequest request)
         {
-            var (person, error) = PersonDto.Create(
+            var (person, error) = Person.Create(
                 id: 0, 
                 fullName: request.FullName,
                 dateBirth: request.BirthDate
@@ -60,12 +64,10 @@ namespace ApprovalApp.API.Controllers
         /// <summary>
         /// Изменение персоны
         /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<ActionResult<long>> UpdatePersonAsync(long id, [FromBody] PersonsRequest request)
         {
-            var (person, error) = PersonDto.Create(id: id, fullName: request.FullName, dateBirth: request.BirthDate);
+            var (person, error) = Person.Create(id: id, fullName: request.FullName, dateBirth: request.BirthDate);
 
             long personId = await _personsService.UpdatePersonAsync(person);
 

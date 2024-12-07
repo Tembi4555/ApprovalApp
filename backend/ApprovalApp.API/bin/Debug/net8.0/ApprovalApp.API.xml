@@ -4,6 +4,57 @@
         <name>ApprovalApp.API</name>
     </assembly>
     <members>
+        <member name="T:ApprovalApp.API.Contracts.Requests.PersonsRequest">
+            <summary>
+            Запрос 
+            </summary>
+            <param name="FullName"></param>
+            <param name="BirthDate"></param>
+        </member>
+        <member name="M:ApprovalApp.API.Contracts.Requests.PersonsRequest.#ctor(System.String,System.DateTime)">
+            <summary>
+            Запрос 
+            </summary>
+            <param name="FullName"></param>
+            <param name="BirthDate"></param>
+        </member>
+        <member name="P:ApprovalApp.API.Contracts.Requests.PersonsRequest.FullName">
+            <summary></summary>
+        </member>
+        <member name="P:ApprovalApp.API.Contracts.Requests.PersonsRequest.BirthDate">
+            <summary></summary>
+        </member>
+        <member name="T:ApprovalApp.API.Contracts.Responses.PersonsResponse">
+            <summary>
+            Ответ
+            </summary>
+            <param name="Id"></param>
+            <param name="FullName"></param>
+            <param name="BirthDate"></param>
+        </member>
+        <member name="M:ApprovalApp.API.Contracts.Responses.PersonsResponse.#ctor(System.Int64,System.String,System.DateTime)">
+            <summary>
+            Ответ
+            </summary>
+            <param name="Id"></param>
+            <param name="FullName"></param>
+            <param name="BirthDate"></param>
+        </member>
+        <member name="P:ApprovalApp.API.Contracts.Responses.PersonsResponse.Id">
+            <summary></summary>
+        </member>
+        <member name="P:ApprovalApp.API.Contracts.Responses.PersonsResponse.FullName">
+            <summary></summary>
+        </member>
+        <member name="P:ApprovalApp.API.Contracts.Responses.PersonsResponse.BirthDate">
+            <summary></summary>
+        </member>
+        <member name="M:ApprovalApp.API.Controllers.PersonsController.#ctor(ApprovalApp.Domain.Abstractions.IPersonsService)">
+            <summary>
+            Конструктор для Person
+            </summary>
+            <param name="personsService"></param>
+        </member>
         <member name="M:ApprovalApp.API.Controllers.PersonsController.GetPersonsAsync">
             <summary>
             Список персон
@@ -21,8 +72,6 @@
             <summary>
             Изменение персоны
             </summary>
-            <param name="request"></param>
-            <returns></returns>
         </member>
         <member name="T:ApprovalApp.API.Migrations.Initial">
             <inheritdoc />
@@ -34,6 +83,30 @@
             <inheritdoc />
         </member>
         <member name="M:ApprovalApp.API.Migrations.Initial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:ApprovalApp.API.Migrations.TicketsTable">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprovalApp.API.Migrations.TicketsTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprovalApp.API.Migrations.TicketsTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprovalApp.API.Migrations.TicketsTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:ApprovalApp.API.Migrations.TicketsApprovalTable">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprovalApp.API.Migrations.TicketsApprovalTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprovalApp.API.Migrations.TicketsApprovalTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprovalApp.API.Migrations.TicketsApprovalTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
     </members>

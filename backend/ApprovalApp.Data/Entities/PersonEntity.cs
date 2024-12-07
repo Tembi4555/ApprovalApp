@@ -7,14 +7,18 @@ using System.Threading.Tasks;
 
 namespace ApprovalApp.Data.Entities
 {
-    public class Person
+    public class PersonEntity
     {
-        [Key]
         public long Id { get; set; }
 
-        [Required]
         public string? FullName { get; set; }
 
         public DateTime DateBirth { get; set; }
+
+        public ICollection<TicketEntity> Tickets { get; set; } = new List<TicketEntity>();
+
+        public ICollection<TicketApprovalEntity> TicketApprovalEntities { get; set; } = new List<TicketApprovalEntity>();
+
+        public ICollection<TicketEntity> TicketsForApprovals { get; set; } = new List<TicketEntity>();
     }
 }
