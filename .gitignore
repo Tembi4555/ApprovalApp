@@ -482,3 +482,15 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+/backend/ApprovalApp.API/bin/Debug/net8.0/ApprovalApp.API.dll
+/backend/ApprovalApp.API/bin/Debug/net8.0/ApprovalApp.API.exe
+/backend/ApprovalApp.API/bin/Debug/net8.0/ApprovalApp.API.pdb
+/backend/ApprovalApp.API/obj/Debug/net8.0/ref/ApprovalApp.API.dll
+/backend/ApprovalApp.API/obj/Debug/net8.0/refint/ApprovalApp.API.dll
+/backend/ApprovalApp.API/obj/Debug/net8.0/apphost.exe
+/backend/ApprovalApp.API/obj/Debug/net8.0/ApprovalApp.API.AssemblyInfo.cs
+/backend/ApprovalApp.API/obj/Debug/net8.0/ApprovalApp.API.AssemblyInfoInputs.cache
+/backend/ApprovalApp.API/obj/Debug/net8.0/ApprovalApp.API.csproj.FileListAbsolute.txt
+/backend/ApprovalApp.API/obj/Debug/net8.0/ApprovalApp.API.dll
+/backend/ApprovalApp.API/obj/Debug/net8.0/ApprovalApp.API.pdb
+/backend/.vs/ApprovalApp/DesignTimeBuild/.dtbcache.v2
