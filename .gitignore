@@ -494,3 +494,6 @@ $RECYCLE.BIN/
 /backend/ApprovalApp.API/obj/Debug/net8.0/ApprovalApp.API.dll
 /backend/ApprovalApp.API/obj/Debug/net8.0/ApprovalApp.API.pdb
 /backend/.vs/ApprovalApp/DesignTimeBuild/.dtbcache.v2
+/backend/.vs/ApprovalApp/v17/.futdcache.v2
+/backend/.vs/ProjectEvaluation/approvalapp.metadata.v7.bin
+/backend/.vs/ProjectEvaluation/approvalapp.projects.v7.bin
