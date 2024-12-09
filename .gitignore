@@ -498,3 +498,5 @@ $RECYCLE.BIN/
 /backend/.vs/ProjectEvaluation/approvalapp.metadata.v7.bin
 /backend/.vs/ProjectEvaluation/approvalapp.projects.v7.bin
 /backend/.vs/ApprovalApp/v17/.suo
+/backend/ApprovalApp.API/obj/Debug/net8.0/ApprovalApp.API.xml
+/backend/ApprovalApp.API/bin/Debug/net8.0/ApprovalApp.API.xml
