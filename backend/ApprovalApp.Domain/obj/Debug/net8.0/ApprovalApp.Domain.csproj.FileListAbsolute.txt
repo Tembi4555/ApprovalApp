@@ -16,6 +16,7 @@ D:\projects\ApprovalApp\backend\ApprovalApp.Domain\obj\Debug\net8.0\ApprovalApp.
 D:\projects\ApprovalApp\backend\ApprovalApp.Domain\obj\Debug\net8.0\ApprovalApp.Domain.AssemblyInfoInputs.cache
 D:\projects\ApprovalApp\backend\ApprovalApp.Domain\obj\Debug\net8.0\ApprovalApp.Domain.AssemblyInfo.cs
 D:\projects\ApprovalApp\backend\ApprovalApp.Domain\obj\Debug\net8.0\ApprovalApp.Domain.csproj.CoreCompileInputs.cache
+D:\projects\ApprovalApp\backend\ApprovalApp.Domain\obj\Debug\net8.0\ApprovalApp.Domain.sourcelink.json
 D:\projects\ApprovalApp\backend\ApprovalApp.Domain\obj\Debug\net8.0\ApprovalApp.Domain.dll
 D:\projects\ApprovalApp\backend\ApprovalApp.Domain\obj\Debug\net8.0\refint\ApprovalApp.Domain.dll
 D:\projects\ApprovalApp\backend\ApprovalApp.Domain\obj\Debug\net8.0\ApprovalApp.Domain.pdb

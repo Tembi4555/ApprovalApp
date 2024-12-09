@@ -23,6 +23,7 @@ D:\projects\ApprovalApp\backend\ApprovalApp.Data\obj\Debug\net8.0\ApprovalApp.Da
 D:\projects\ApprovalApp\backend\ApprovalApp.Data\obj\Debug\net8.0\ApprovalApp.Data.AssemblyInfoInputs.cache
 D:\projects\ApprovalApp\backend\ApprovalApp.Data\obj\Debug\net8.0\ApprovalApp.Data.AssemblyInfo.cs
 D:\projects\ApprovalApp\backend\ApprovalApp.Data\obj\Debug\net8.0\ApprovalApp.Data.csproj.CoreCompileInputs.cache
+D:\projects\ApprovalApp\backend\ApprovalApp.Data\obj\Debug\net8.0\ApprovalApp.Data.sourcelink.json
 D:\projects\ApprovalApp\backend\ApprovalApp.Data\obj\Debug\net8.0\ApprovalApp.Data.csproj.CopyComplete
 D:\projects\ApprovalApp\backend\ApprovalApp.Data\obj\Debug\net8.0\ApprovalApp.Data.dll
 D:\projects\ApprovalApp\backend\ApprovalApp.Data\obj\Debug\net8.0\refint\ApprovalApp.Data.dll

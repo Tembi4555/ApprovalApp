@@ -1,6 +1,7 @@
 using ApprovalApp.Application;
 using ApprovalApp.Data;
 using ApprovalApp.Data.PersonsRepository;
+using ApprovalApp.Data.TicketsRepository;
 using ApprovalApp.Domain.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -28,6 +29,8 @@ builder.Services.AddDbContext<ApprovalDbContext>(options =>
 
 builder.Services.AddScoped<IPersonsService, PersonsService>();
 builder.Services.AddScoped<IPersonsPerository, PersonsRepository>();
+builder.Services.AddScoped<ITicketsRepository, TicketsRepository>();
+builder.Services.AddScoped<ITicketsService, TicketsService>();
 
 var app = builder.Build();
 

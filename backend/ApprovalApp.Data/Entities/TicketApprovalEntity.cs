@@ -10,10 +10,8 @@ namespace ApprovalApp.Data.Entities
     public class TicketApprovalEntity
     {
         public long Id { get; set; }
-        [ForeignKey(nameof(Ticket))]
         public long TicketId { get; set; }
         public TicketEntity? Ticket { get; set; }
-        [ForeignKey(nameof(Person))]
         public long ApprovingPersonId { get; set; }
         public PersonEntity? Person { get; set; }
         public string? Status { get; set; }

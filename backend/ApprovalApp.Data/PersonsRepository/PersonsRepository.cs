@@ -21,39 +21,39 @@ namespace ApprovalApp.Data.PersonsRepository
 
         public async Task<List<Person>> GetAsync()
         {
-            List<PersonEntity> persons = await _context.Persons.AsNoTracking().ToListAsync();
+            List<PersonEntity> personsEntities = await _context.Persons.AsNoTracking().ToListAsync();
 
             // Mapping
-            List<Person> personsDtos = persons.Select(p => Person.Create(p.Id, p.FullName, p.DateBirth).Person)
+            List<Person> persons = personsEntities.Select(p => Person.Create(p.Id, p.FullName, p.DateBirth).Person)
                 .ToList();
 
-            return personsDtos;
+            return persons;
         }
 
-        public async Task<long> CreateAsync(Person personDto)
+        public async Task<long> CreateAsync(Person person)
         {
-            PersonEntity person = new PersonEntity
+            PersonEntity personEntity = new PersonEntity
             {
-                Id = personDto.Id,
-                FullName = personDto.FullName,
-                DateBirth = personDto.DateBirth
+                Id = person.Id,
+                FullName = person.FullName,
+                DateBirth = person.DateBirth
             };
 
-            await _context.Persons.AddAsync(person);
+            await _context.Persons.AddAsync(personEntity);
             await _context.SaveChangesAsync();
 
-            return person.Id;
+            return personEntity.Id;
         }
 
-        public async Task<long> UpdateAsync(Person personDto)
+        public async Task<long> UpdateAsync(Person person)
         {
             await _context.Persons
-                .Where(p => p.Id == personDto.Id)
+                .Where(p => p.Id == person.Id)
                 .ExecuteUpdateAsync(s => s
-                    .SetProperty(p => p.FullName, p => personDto.FullName)
-                    .SetProperty(p => p.DateBirth, p => personDto.DateBirth));
+                    .SetProperty(p => p.FullName, p => person.FullName)
+                    .SetProperty(p => p.DateBirth, p => person.DateBirth));
 
-            return personDto.Id;
+            return person.Id;
         }
     }
 }

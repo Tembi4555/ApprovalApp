@@ -73,6 +73,17 @@
             Изменение персоны
             </summary>
         </member>
+        <member name="M:ApprovalApp.API.Controllers.TicketsController.#ctor(ApprovalApp.Domain.Abstractions.ITicketsService)">
+            <summary>
+            Контроллер для создания и обработки заявок
+            </summary>
+            <param name="ticketsService"></param>
+        </member>
+        <member name="M:ApprovalApp.API.Controllers.TicketsController.CreateTicketAsync(ApprovalApp.API.Contracts.Requests.TicketsRequest)">
+            <summary>
+            Добавление персоны
+            </summary>
+        </member>
         <member name="T:ApprovalApp.API.Migrations.Initial">
             <inheritdoc />
         </member>
@@ -107,6 +118,18 @@
             <inheritdoc />
         </member>
         <member name="M:ApprovalApp.API.Migrations.TicketsApprovalTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:ApprovalApp.API.Migrations.TicketsApprovalUpdate">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprovalApp.API.Migrations.TicketsApprovalUpdate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprovalApp.API.Migrations.TicketsApprovalUpdate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprovalApp.API.Migrations.TicketsApprovalUpdate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
     </members>
