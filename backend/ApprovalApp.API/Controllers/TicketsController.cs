@@ -23,33 +23,43 @@ namespace ApprovalApp.API.Controllers
         }
 
         /// <summary>
-        /// Добавление персоны
+        /// Добавление новой заявки
         /// </summary>
         [HttpPost]
-        public async Task<ActionResult<long>> CreateTicketAsync([FromBody] TicketsRequest request
-            /*Dictionary<long, int> approvingInQueue*/)
+        public async Task<ActionResult<long>> CreateTicketAsync([FromBody] TicketsRequest request)
         {
-            var approvingInQueue = new Dictionary<long, int>();
             var (ticket, error) = Ticket.Create(
                 id: 0,
                 title: request.Title,
                 description: request.Description,
                 idAuthor: request.IdAuthor
-                
+
             );
-            
+
 
             if (!String.IsNullOrEmpty(error))
                 return BadRequest(error);
 
-            if(approvingInQueue.Count()==0 || approvingInQueue == null)
+            if (request.approvingInQueue.Count() == 0 || request.approvingInQueue == null)
             {
                 return BadRequest("Не назначены согласующие заявку.");
             }
 
-            long ticketId = await _ticketsService.CreateTicketAsync(ticket, approvingInQueue);
+            long ticketId = await _ticketsService.CreateTicketAsync(ticket, request.approvingInQueue);
 
             return Ok(ticketId);
         }
+
+        /// <summary>
+        /// Прекращение заявки
+        /// </summary>
+        //[HttpPost("{id}")]
+        //public async Task<ActionResult> StopApproval(string? reason)
+        //{
+        //    if (String.IsNullOrEmpty(reason))
+        //        return BadRequest("Требуется указать причину прекращения согласования заявки.");
+
+
+        //}
     }
 }

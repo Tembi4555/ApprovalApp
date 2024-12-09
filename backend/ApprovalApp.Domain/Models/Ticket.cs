@@ -12,17 +12,13 @@ namespace ApprovalApp.Domain.Models
     public class Ticket
     {
         private Ticket(long id, string? title, string? description, DateTime createDate, 
-            long idAuthor, Person? person = null, List<TicketApproval>? ticketApprovals = null,
-            List<Person>? peoples = null)
+            long idAuthor)
         {
             Id = id;
             Title = title; 
             Description = description;
             CreateDate = createDate;
             IdAuthor = idAuthor;
-            Person = person;
-            TicketApprovals = ticketApprovals;
-            Peoples = peoples;
         }
 
         public long Id { get; }
@@ -35,15 +31,9 @@ namespace ApprovalApp.Domain.Models
 
         public long IdAuthor { get;  }
 
-        public Person? Person { get; }
-
-        public List<TicketApproval>? TicketApprovals { get; }
-
-        public List<Person>? Peoples { get; }
 
         public static (Ticket Ticket, string? Error) Create (long id, string? title, string? description, 
-            long idAuthor, Person? person=null, List<TicketApproval>? ticketApprovals = null,
-            List<Person>? peoples = null)
+            long idAuthor)
         {
             string error = string.Empty;
 
@@ -68,16 +58,9 @@ namespace ApprovalApp.Domain.Models
                     error = "В заявке не указан автор.";
             }
 
-            if(ticketApprovals == null)
-                ticketApprovals = new List<TicketApproval>();
-
-            if(peoples == null)
-                peoples = new List<Person>();
-
             DateTime createDate = DateTime.Now;
 
-            Ticket ticket = new Ticket(id, title, description, createDate, idAuthor, person,
-                ticketApprovals, peoples);
+            Ticket ticket = new Ticket(id, title, description, createDate, idAuthor);
 
             return (ticket,  error);
         }

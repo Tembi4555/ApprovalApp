@@ -6,8 +6,7 @@
     public class TicketApproval
     {
         public TicketApproval(long id, long ticketId, long approvingPersonId, string status,
-            int iteration, int numberQueue, DateTime modifiedDate, string coment,
-            Ticket? ticket = null, Person? person = null)
+            int iteration, int numberQueue, DateTime modifiedDate, string coment)
         {
             Id = id;
             TicketId = ticketId;
@@ -17,15 +16,11 @@
             NumberQueue = numberQueue;
             ModifiedDate = modifiedDate;
             Comment = coment;
-            Ticket = ticket;
-            Person = person;
         }
 
         public long Id { get; }
         public long TicketId { get; }
-        public Ticket? Ticket { get;  }
         public long ApprovingPersonId { get; }
-        public Person? Person { get; }
         public string? Status { get; }
         public int Iteration { get; set; }
         public int NumberQueue { get; }
@@ -33,8 +28,7 @@
         public string? Comment { get; }
 
         public static(TicketApproval TicketApproval, string Error) Create (long id, long ticketId, 
-            long approvingPersonId, StatusApproval statusEnum, int iteration, 
-            int numberQueue, string coment, Ticket? ticket = null, Person? person = null)
+            long approvingPersonId, StatusApproval statusEnum, int iteration, int numberQueue, string coment)
         {
             string error = String.Empty;
             string status = String.Empty;
@@ -79,7 +73,7 @@
             }
 
             TicketApproval ta = new TicketApproval(id, ticketId, approvingPersonId, status,
-                iteration, numberQueue, DateTime.Now, coment, ticket, person);
+                iteration, numberQueue, DateTime.Now, coment);
 
             return (ta, error);
         }

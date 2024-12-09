@@ -6,6 +6,8 @@
 
         string? Description,
 
-        long IdAuthor
+        long IdAuthor,
+
+        Dictionary<long, int> approvingInQueue
     );
 }
