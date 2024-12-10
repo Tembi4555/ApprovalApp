@@ -1,6 +1,7 @@
 ﻿using ApprovalApp.Data.Entities;
 using ApprovalApp.Domain.Abstractions;
 using ApprovalApp.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,6 +57,38 @@ namespace ApprovalApp.Data.TicketsRepository
             await _context.SaveChangesAsync();
 
             return te.Id;
+        }
+
+        public async Task<Ticket?> GetTicketByIdAsync(long ticketId)
+        {
+            TicketEntity ticketEntity = await _context.Tickets.AsNoTracking()
+                .Where(t => t.Id == ticketId)
+                .Include(t => t.TicketApprovalEntities)
+                .FirstOrDefaultAsync();
+
+            if (ticketEntity == null) 
+            {
+                return null;
+            }
+
+            List<TicketApproval> ticketApprovals = new List<TicketApproval>();
+
+            foreach(var ta in ticketEntity.TicketApprovalEntities)
+            {
+                ticketApprovals.Add(TicketApproval
+                    .Create(id: ta.Id, ticketId:ta.TicketId, approvingPersonId: ta.ApprovingPersonId,
+                        status: ta.Status, ta.Iteration, ta.NumberQueue, ta.Comment).TicketApproval);
+            }
+
+            Ticket ticket = Ticket.Create(id: ticketEntity.Id, title: ticketEntity.Title, description: ticketEntity.Description,
+                idAuthor: ticketEntity.IdAuthor, ticketApprovals: ticketApprovals).Ticket;
+
+            return ticket;
+        }
+
+        public long UpdateTicket(Ticket ticket)
+        {
+            throw new NotImplementedException();
         }
     }
 }

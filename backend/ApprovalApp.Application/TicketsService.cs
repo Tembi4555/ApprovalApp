@@ -23,5 +23,50 @@ namespace ApprovalApp.Application
 
             return ticketId;
         }
+
+        public async Task<string> StopApprovalAsync(long ticketId, string? reasonStopping)
+        {
+            Ticket ticket = await GetTicketByIdAsync(ticketId);
+
+            if (ticket == null) 
+            { 
+                return $"По идентификатору - {ticketId} не найдена заявка.";
+            }
+
+            if(ticket.TicketApprovals == null || ticket.TicketApprovals.Count() == 0)
+            {
+                return $"";
+            }
+
+            foreach(var ta in ticket.TicketApprovals)
+            {
+                ta.UpdateStatusAndComment(status: "Прекращено", comment: reasonStopping);
+            }
+
+            string statusOperation = await UpdateTicketWithTicketsApprovalAsync(ticket);
+
+            if(statusOperation != "ok")
+                return statusOperation;
+
+            return "ok";
+        }
+
+        public async Task<Ticket> GetTicketByIdAsync(long ticketId)
+        {
+            Ticket ticket = await _ticketsRepository.GetTicketByIdAsync(ticketId);
+
+            return ticket;
+        }
+
+        public async Task<string> UpdateTicketWithTicketsApprovalAsync(Ticket ticket)
+        {
+            long statusOperation = _ticketsRepository.UpdateTicket(ticket);
+
+            if(statusOperation <= 0)
+            {
+                return "Произошла ошибка при сохранении данных.";
+            }
+            return "ok";
+        }
     }
 }

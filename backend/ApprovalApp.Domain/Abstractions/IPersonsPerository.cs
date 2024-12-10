@@ -11,8 +11,8 @@ namespace ApprovalApp.Domain.Abstractions
     {
         Task<List<Person>> GetAsync();
 
-        Task<long> CreateAsync(Person personDto);
+        Task<long> CreateAsync(Person person);
 
-        Task<long> UpdateAsync(Person personDto);
+        Task<long> UpdateAsync(Person person);
     }
 }

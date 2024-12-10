@@ -16,14 +16,14 @@ namespace ApprovalApp.Application
             return await _personsPerository.GetAsync();
         }
 
-        public async Task<long> CreatePersonAsync(Person personDto)
+        public async Task<long> CreatePersonAsync(Person person)
         {
-            return await _personsPerository.CreateAsync(personDto);
+            return await _personsPerository.CreateAsync(person);
         }
 
-        public async Task<long> UpdatePersonAsync(Person personDto)
+        public async Task<long> UpdatePersonAsync(Person person)
         {
-            return await _personsPerository.UpdateAsync(personDto);
+            return await _personsPerository.UpdateAsync(person);
         }
     }
 }

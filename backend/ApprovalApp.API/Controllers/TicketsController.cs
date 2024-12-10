@@ -1,7 +1,9 @@
 ﻿using ApprovalApp.API.Contracts.Requests;
+using ApprovalApp.API.Contracts.Responses;
 using ApprovalApp.Application;
 using ApprovalApp.Domain.Abstractions;
 using ApprovalApp.Domain.Models;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -36,7 +38,6 @@ namespace ApprovalApp.API.Controllers
 
             );
 
-
             if (!String.IsNullOrEmpty(error))
                 return BadRequest(error);
 
@@ -53,13 +54,36 @@ namespace ApprovalApp.API.Controllers
         /// <summary>
         /// Прекращение заявки
         /// </summary>
-        //[HttpPost("{id}")]
-        //public async Task<ActionResult> StopApproval(string? reason)
-        //{
-        //    if (String.IsNullOrEmpty(reason))
-        //        return BadRequest("Требуется указать причину прекращения согласования заявки.");
+        [HttpPut("{id}")]
+        public async Task<ActionResult> StopApproval(long id, string? reason)
+        {
+            if (String.IsNullOrEmpty(reason))
+                return BadRequest("Требуется указать причину прекращения согласования заявки.");
 
+            string statusOperation = await _ticketsService.StopApprovalAsync(id, reason);
 
-        //}
+            if(statusOperation != "ok")
+                return BadRequest(statusOperation);
+
+            return Ok();
+
+        }
+
+        /// <summary>
+        /// Получение заявки по идентификатору
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("{id}")]
+        public async Task<ActionResult> GetTicketByIdAsync(long id)
+        {
+            Ticket ticket = await _ticketsService.GetTicketByIdAsync(id);
+
+            if (ticket == null)
+                return BadRequest($"Не удалось найти заявку по идентфикатору {id}");
+
+            TicketsResponse response = new TicketsResponse (ticket.Id, ticket.Title, ticket.Description, ticket.IdAuthor);
+
+            return Ok(response);
+        }
     }
 }

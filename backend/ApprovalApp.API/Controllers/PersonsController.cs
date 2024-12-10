@@ -30,9 +30,9 @@ namespace ApprovalApp.API.Controllers
         [HttpGet]
         public async Task<ActionResult<List<PersonsResponse>>> GetPersonsAsync()
         {
-            List<Person> personDtos = await _personsService.GetAllPersonsAsync();
+            List<Person> persons = await _personsService.GetAllPersonsAsync();
 
-            List<PersonsResponse> response = personDtos
+            List<PersonsResponse> response = persons
                 .Select(p => new PersonsResponse(p.Id, p.FullName, p.DateBirth))
                 .ToList();
             
