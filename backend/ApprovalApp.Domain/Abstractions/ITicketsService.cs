@@ -25,5 +25,10 @@ namespace ApprovalApp.Domain.Abstractions
         /// <param name="ticketId"></param>
         /// <returns></returns>
         Task<Ticket> GetTicketByIdAsync(long ticketId);
+
+        /// <summary>
+        /// Изменение статуса задачи по заявке на согласование
+        /// </summary>
+        Task<string> ApprovingTicketTask(long idTicket, long idApproving, string status, string comment);
     }
 }

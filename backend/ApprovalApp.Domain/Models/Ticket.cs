@@ -12,7 +12,7 @@ namespace ApprovalApp.Domain.Models
     public class Ticket
     {
         private Ticket(long id, string? title, string? description, DateTime createDate, 
-            long idAuthor, List<TicketApproval>? ticketApprovals)
+            long idAuthor, List<TicketApproval>? ticketApprovals, Person? authorPerson)
         {
             Id = id;
             Title = title; 
@@ -20,6 +20,7 @@ namespace ApprovalApp.Domain.Models
             CreateDate = createDate;
             IdAuthor = idAuthor;
             TicketApprovals = ticketApprovals;
+            AuthorPerson = authorPerson;
         }
 
         public long Id { get; }
@@ -32,10 +33,12 @@ namespace ApprovalApp.Domain.Models
 
         public long IdAuthor { get;  }
 
+        public Person? AuthorPerson { get; }
+
         public List<TicketApproval>? TicketApprovals { get; }
 
         public static (Ticket Ticket, string? Error) Create (long id, string? title, string? description, 
-            long idAuthor, List<TicketApproval>? ticketApprovals = null)
+            long idAuthor, List<TicketApproval>? ticketApprovals = null, Person? authorPerson = null)
         {
             string error = string.Empty;
 
@@ -65,7 +68,7 @@ namespace ApprovalApp.Domain.Models
 
             DateTime createDate = DateTime.Now;
 
-            Ticket ticket = new Ticket(id, title, description, createDate, idAuthor, ticketApprovals);
+            Ticket ticket = new Ticket(id, title, description, createDate, idAuthor, ticketApprovals, authorPerson);
 
             return (ticket,  error);
         }

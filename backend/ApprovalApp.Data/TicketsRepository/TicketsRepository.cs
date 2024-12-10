@@ -59,9 +59,9 @@ namespace ApprovalApp.Data.TicketsRepository
             return te.Id;
         }
 
-        public async Task<Ticket?> GetTicketByIdAsync(long ticketId)
+        public async Task<Ticket> GetTicketByIdAsync(long ticketId)
         {
-            TicketEntity ticketEntity = await _context.Tickets.AsNoTracking()
+            TicketEntity? ticketEntity = await _context.Tickets.AsNoTracking()
                 .Where(t => t.Id == ticketId)
                 .Include(t => t.TicketApprovalEntities)
                 .FirstOrDefaultAsync();
@@ -86,9 +86,42 @@ namespace ApprovalApp.Data.TicketsRepository
             return ticket;
         }
 
-        public long UpdateTicket(Ticket ticket)
+        public async Task<long> UpdateTicket(Ticket ticket)
         {
-            throw new NotImplementedException();
+            TicketEntity? ticketUpdate = await _context.Tickets.Where(t => t.Id == ticket.Id)
+                .Include(t => t.TicketApprovalEntities)
+                .FirstOrDefaultAsync();
+
+            ticketUpdate!.Title = ticket.Title;
+            ticketUpdate.Description = ticket.Description;
+
+            ticketUpdate.TicketApprovalEntities.Clear();
+
+            foreach (var ta in ticket.TicketApprovals ?? new List<TicketApproval>())
+            {
+                ticketUpdate.TicketApprovalEntities.Add(new TicketApprovalEntity
+                {
+                    Id = ta.Id,
+                    TicketId = ta.TicketId,
+                    ApprovingPersonId = ta.ApprovingPersonId,
+                    Status = ta.Status,
+                    Iteration = ta.Iteration,
+                    NumberQueue = ta.NumberQueue,
+                    ModifiedDate = DateTime.Now,
+                    Comment = ta.Comment
+                });
+            }
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch 
+            {
+                return 0;
+            }
+
+            return ticket.Id;
         }
     }
 }
