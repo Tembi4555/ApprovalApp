@@ -66,7 +66,7 @@ namespace ApprovalApp.Application
 
         private async Task<string> UpdateTicketWithTicketsApprovalAsync(Ticket ticket)
         {
-            long statusOperation = await _ticketsRepository.UpdateTicket(ticket);
+            long statusOperation = await _ticketsRepository.UpdateTicketAsync(ticket);
 
             if(statusOperation <= 0)
             {
@@ -78,12 +78,22 @@ namespace ApprovalApp.Application
         public async Task<string> ApprovingTicketTask(long idTicket, long idApproving, string status, string comment)
         {
             TicketApproval ta = await _ticketsRepository.GetTicketApprovalByIdTicketAndApproving(idTicket, idApproving);
-
+            
             if(ta == null || ta.Status == "Прекращено" || ta.Status == "На доработку" || ta.Status == "Согласовано")
             {
                 return $"Не найдена активная задача {idTicket}, для автора {idApproving}";
-            }    
-                
+            }
+
+            ta.Update(status, comment);
+
+            long statusOperation = await _ticketsRepository.UpdateTicketApprovalAsync(ta);
+
+            if (statusOperation <= 0)
+            {
+                return "Произошла ошибка при сохранении данных.";
+            }
+            return "ok";
+
         }
 
     }

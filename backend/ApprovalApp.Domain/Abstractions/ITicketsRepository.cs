@@ -22,6 +22,11 @@ namespace ApprovalApp.Domain.Abstractions
         /// <summary>
         /// Обновить заявку.
         /// </summary>
-        Task<long> UpdateTicket(Ticket ticket);
+        Task<long> UpdateTicketAsync(Ticket ticket);
+
+        /// <summary>
+        /// Обновить данные в задаче по заявке.
+        /// </summary>
+        Task<long> UpdateTicketApprovalAsync(TicketApproval ta);
     }
 }

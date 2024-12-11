@@ -59,6 +59,24 @@ namespace ApprovalApp.Data.TicketsRepository
             return te.Id;
         }
 
+        public async Task<TicketApproval> GetTicketApprovalByIdTicketAndApproving(long idTicket, long idApproving)
+        {
+            TicketApprovalEntity? tae = await _context.TicketsApprovals
+                .Where(t => t.TicketId == idTicket
+                && t.ApprovingPersonId == idApproving)
+                .OrderByDescending(t => t.Iteration)
+                .Include(t => t.Person)
+                .Include(t => t.Ticket)
+                .FirstOrDefaultAsync();
+
+            if (tae is null)
+                return null;
+
+            TicketApproval ticketApproval = tae.Mapping();
+
+            return ticketApproval;
+        }
+
         public async Task<Ticket> GetTicketByIdAsync(long ticketId)
         {
             TicketEntity? ticketEntity = await _context.Tickets.AsNoTracking()
@@ -86,7 +104,28 @@ namespace ApprovalApp.Data.TicketsRepository
             return ticket;
         }
 
-        public async Task<long> UpdateTicket(Ticket ticket)
+        public async Task<long> UpdateTicketApprovalAsync(TicketApproval ta)
+        {
+            try
+            {
+                await _context.TicketsApprovals
+                    .Where(t => t.Id == ta.Id)
+                    .ExecuteUpdateAsync(s => s
+                        .SetProperty(p => p.NumberQueue, p => ta.NumberQueue)
+                        .SetProperty(p => p.Comment, p => ta.Comment)
+                        .SetProperty(p => p.Iteration, p => ta.Iteration)
+                        .SetProperty(p => p.ModifiedDate, p => DateTime.Now)
+                        .SetProperty(p => p.Status, p => ta.Status));
+
+                return ta.Id;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+        public async Task<long> UpdateTicketAsync(Ticket ticket)
         {
             TicketEntity? ticketUpdate = await _context.Tickets.Where(t => t.Id == ticket.Id)
                 .Include(t => t.TicketApprovalEntities)

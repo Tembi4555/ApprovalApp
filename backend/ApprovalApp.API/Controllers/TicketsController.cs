@@ -111,7 +111,7 @@ namespace ApprovalApp.API.Controllers
             return Ok();
         }
 
-        // Все заявки автора.
+        // Все заявки автор.
 
         // Все заявки на согласование.
 
