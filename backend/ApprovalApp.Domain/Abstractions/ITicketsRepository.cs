@@ -2,6 +2,9 @@
 
 namespace ApprovalApp.Domain.Abstractions
 {
+    /// <summary>
+    /// Интерфейс репозитория для взаимодействия с сущностями заявок
+    /// </summary>
     public interface ITicketsRepository
     {
         /// <summary>

@@ -21,4 +21,13 @@
     <ProjectReference Include="..\ApprovalApp.Data\ApprovalApp.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Approval.db-shm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Approval.db-wal">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

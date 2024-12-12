@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace ApprovalApp.Domain.Abstractions
 {
+    /// <summary>
+    /// Интерфейс для работы с заявками
+    /// </summary>
     public interface ITicketsService
     {
         /// <summary>

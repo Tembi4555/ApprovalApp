@@ -36,5 +36,6 @@ namespace ApprovalApp.Data
         public DbSet<PersonEntity> Persons { get; set; }
         public DbSet<TicketEntity> Tickets { get; set; }
         public DbSet<TicketApprovalEntity> TicketsApprovals { get; set; }
+        public DbSet<UserEntity> Users { get; set; }
     }
 }
