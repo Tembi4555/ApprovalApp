@@ -10,7 +10,8 @@
     (
         long Id,
         string? FullName,
-        DateTime BirthDate
+        DateTime BirthDate,
+        string? BithDateToString
     );
         
 }

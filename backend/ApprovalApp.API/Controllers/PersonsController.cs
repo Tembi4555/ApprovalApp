@@ -33,7 +33,7 @@ namespace ApprovalApp.API.Controllers
             List<Person> persons = await _personsService.GetAllPersonsAsync();
 
             List<PersonsResponse> response = persons
-                .Select(p => new PersonsResponse(p.Id, p.FullName, p.DateBirth))
+                .Select(p => new PersonsResponse(p.Id, p.FullName, p.DateBirth, p.DateBirth.ToString("d")))
                 .ToList();
             
             return Ok(response);
