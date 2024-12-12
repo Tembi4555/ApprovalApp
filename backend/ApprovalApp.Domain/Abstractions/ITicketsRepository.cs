@@ -10,17 +10,23 @@ namespace ApprovalApp.Domain.Abstractions
         Task<long> CreateTicketAsync(Ticket ticket, Dictionary<long, int> authorsInQueue);
 
         /// <summary>
+        /// Получить задачу на согласование по id автора и id задачи.
+        /// </summary>
+        Task<TicketApproval> GetTicketApprovalByIdTicketAndApproving(long idTicket, long idApproving);
+
+        /// <summary>
         /// Получение заявки по ID из БД.
         /// </summary>
-        /// <param name="ticketId"></param>
-        /// <returns></returns>
         Task<Ticket> GetTicketByIdAsync(long ticketId);
 
         /// <summary>
         /// Обновить заявку.
         /// </summary>
-        /// <param name="ticket"></param>
-        /// <returns></returns>
-        long UpdateTicket(Ticket ticket);
+        Task<long> UpdateTicketAsync(Ticket ticket);
+
+        /// <summary>
+        /// Обновить данные в задаче по заявке.
+        /// </summary>
+        Task<long> UpdateTicketApprovalAsync(TicketApproval ta);
     }
 }

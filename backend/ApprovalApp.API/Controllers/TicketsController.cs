@@ -1,6 +1,7 @@
 ﻿using ApprovalApp.API.Contracts.Requests;
 using ApprovalApp.API.Contracts.Responses;
 using ApprovalApp.Application;
+using ApprovalApp.Application.Helpers;
 using ApprovalApp.Domain.Abstractions;
 using ApprovalApp.Domain.Models;
 using Microsoft.AspNetCore.Authentication;
@@ -54,7 +55,7 @@ namespace ApprovalApp.API.Controllers
         /// <summary>
         /// Прекращение заявки
         /// </summary>
-        [HttpPut("{id}")]
+        [HttpPut("stopapproval/{id}")]
         public async Task<ActionResult> StopApproval(long id, string? reason)
         {
             if (String.IsNullOrEmpty(reason))
@@ -62,7 +63,7 @@ namespace ApprovalApp.API.Controllers
 
             string statusOperation = await _ticketsService.StopApprovalAsync(id, reason);
 
-            if(statusOperation != "ok")
+            if (statusOperation != "ok")
                 return BadRequest(statusOperation);
 
             return Ok();
@@ -73,7 +74,7 @@ namespace ApprovalApp.API.Controllers
         /// Получение заявки по идентификатору
         /// </summary>
         /// <returns></returns>
-        [HttpGet("{id}")]
+        [HttpGet("ticketbyid/{id}")]
         public async Task<ActionResult> GetTicketByIdAsync(long id)
         {
             Ticket ticket = await _ticketsService.GetTicketByIdAsync(id);
@@ -81,9 +82,39 @@ namespace ApprovalApp.API.Controllers
             if (ticket == null)
                 return BadRequest($"Не удалось найти заявку по идентфикатору {id}");
 
-            TicketsResponse response = new TicketsResponse (ticket.Id, ticket.Title, ticket.Description, ticket.IdAuthor);
+            TicketsResponse response = new TicketsResponse(ticket.Id, ticket.Title, ticket.Description,
+                ticket.IdAuthor, ticket.TicketApprovals?.LastOrDefault()?.Status);
 
             return Ok(response);
         }
+
+        /// <summary>
+        /// Изменения статуса задачи по заявке согласующим.
+        /// </summary>
+        [HttpPut("approvingtickettask/{idTicket}")]
+        public async Task<ActionResult> ApprovingTicketTask(long idTicket, long idApproving, int idStatus, string? comment)
+        {
+            if (idStatus < 1 || idStatus > 5)
+                return BadRequest("Не верно указан статус согласование/отклонение.");
+
+            if (String.IsNullOrEmpty(comment))
+                return BadRequest("Не указан комментарий к задаче.");
+
+            string status = TicketHelpers.GetStatusString((StatusApproval)idStatus);
+
+            string statusOperation = await _ticketsService.ApprovingTicketTask(idTicket, idApproving, status, comment);
+
+            if (statusOperation != "ok")
+                return BadRequest(statusOperation);
+
+
+            return Ok();
+        }
+
+        // Все заявки автор.
+
+        // Все заявки на согласование.
+
+        // Посмотреть все круги заявки.
     }
 }

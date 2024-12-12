@@ -5,8 +5,9 @@
     /// </summary>
     public class TicketApproval
     {
-        private TicketApproval(long id, long ticketId, long approvingPersonId, string status,
-            int iteration, int numberQueue, DateTime modifiedDate, string coment)
+        private TicketApproval(long id, long ticketId, long approvingPersonId, string? status,
+            int iteration, int numberQueue, DateTime modifiedDate, string? coment, 
+            Person? approvingPerson, Ticket? ticket)
         {
             Id = id;
             TicketId = ticketId;
@@ -26,15 +27,18 @@
         public int NumberQueue { get; }
         public DateTime ModifiedDate { get; }
         public string? Comment { get; private set; }
+        public Person? ApprovingPerson { get; }
+        public Ticket? Ticket { get; }
 
-        public void UpdateStatusAndComment(string status, string comment) 
+        public void Update(string? status, string? comment) 
         { 
             Status = status;
             Comment = comment;
         }
 
         public static(TicketApproval TicketApproval, string Error) Create (long id, long ticketId, 
-            long approvingPersonId, string? status, int iteration, int numberQueue, string? comment)
+            long approvingPersonId, string? status, int iteration, int numberQueue, string? comment,
+            Person? approvingPerson = null, Ticket? ticket = null)
         {
             string error = String.Empty;
             
@@ -61,17 +65,19 @@
             }
 
             TicketApproval ta = new TicketApproval(id, ticketId, approvingPersonId, status,
-                iteration, numberQueue, DateTime.Now, comment);
+                iteration, numberQueue, DateTime.Now, comment, approvingPerson, ticket);
 
             return (ta, error);
         }
+
     }
 
     public enum StatusApproval
     {
-        New, //Новая
-        Rejected, //Отклонено
-        Agreed, //Согласовано 
-        Discontinued //Прекращено
+        New = 1, //Новая
+        Rejected = 2, //На доработку
+        Agreed = 3, //Согласовано 
+        Discontinued = 4, //Прекращено
+        Repeat = 5 //Повторно
     }
 }

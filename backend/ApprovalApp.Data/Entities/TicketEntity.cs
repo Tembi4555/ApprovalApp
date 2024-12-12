@@ -22,6 +22,13 @@ namespace ApprovalApp.Data.Entities
         public ICollection<TicketApprovalEntity> TicketApprovalEntities { get; set; } = new List<TicketApprovalEntity>();
         public ICollection<PersonEntity> Peoples { get; set; } = new List<PersonEntity>();
 
+        public Ticket Mapping() 
+        {
+            
+            Ticket ticket = Ticket.Create(id: this.Id, title: this.Title, description: this.Description, 
+                idAuthor: this.IdAuthor, authorPerson: this?.Person?.Mapping()).Ticket;
 
+            return ticket;
+        }
     }
 }

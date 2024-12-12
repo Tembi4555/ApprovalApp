@@ -59,9 +59,27 @@ namespace ApprovalApp.Data.TicketsRepository
             return te.Id;
         }
 
-        public async Task<Ticket?> GetTicketByIdAsync(long ticketId)
+        public async Task<TicketApproval> GetTicketApprovalByIdTicketAndApproving(long idTicket, long idApproving)
         {
-            TicketEntity ticketEntity = await _context.Tickets.AsNoTracking()
+            TicketApprovalEntity? tae = await _context.TicketsApprovals
+                .Where(t => t.TicketId == idTicket
+                && t.ApprovingPersonId == idApproving)
+                .OrderByDescending(t => t.Iteration)
+                .Include(t => t.Person)
+                .Include(t => t.Ticket)
+                .FirstOrDefaultAsync();
+
+            if (tae is null)
+                return null;
+
+            TicketApproval ticketApproval = tae.Mapping();
+
+            return ticketApproval;
+        }
+
+        public async Task<Ticket> GetTicketByIdAsync(long ticketId)
+        {
+            TicketEntity? ticketEntity = await _context.Tickets.AsNoTracking()
                 .Where(t => t.Id == ticketId)
                 .Include(t => t.TicketApprovalEntities)
                 .FirstOrDefaultAsync();
@@ -86,9 +104,63 @@ namespace ApprovalApp.Data.TicketsRepository
             return ticket;
         }
 
-        public long UpdateTicket(Ticket ticket)
+        public async Task<long> UpdateTicketApprovalAsync(TicketApproval ta)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await _context.TicketsApprovals
+                    .Where(t => t.Id == ta.Id)
+                    .ExecuteUpdateAsync(s => s
+                        .SetProperty(p => p.NumberQueue, p => ta.NumberQueue)
+                        .SetProperty(p => p.Comment, p => ta.Comment)
+                        .SetProperty(p => p.Iteration, p => ta.Iteration)
+                        .SetProperty(p => p.ModifiedDate, p => DateTime.Now)
+                        .SetProperty(p => p.Status, p => ta.Status));
+
+                return ta.Id;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+        public async Task<long> UpdateTicketAsync(Ticket ticket)
+        {
+            TicketEntity? ticketUpdate = await _context.Tickets.Where(t => t.Id == ticket.Id)
+                .Include(t => t.TicketApprovalEntities)
+                .FirstOrDefaultAsync();
+
+            ticketUpdate!.Title = ticket.Title;
+            ticketUpdate.Description = ticket.Description;
+
+            ticketUpdate.TicketApprovalEntities.Clear();
+
+            foreach (var ta in ticket.TicketApprovals ?? new List<TicketApproval>())
+            {
+                ticketUpdate.TicketApprovalEntities.Add(new TicketApprovalEntity
+                {
+                    Id = ta.Id,
+                    TicketId = ta.TicketId,
+                    ApprovingPersonId = ta.ApprovingPersonId,
+                    Status = ta.Status,
+                    Iteration = ta.Iteration,
+                    NumberQueue = ta.NumberQueue,
+                    ModifiedDate = DateTime.Now,
+                    Comment = ta.Comment
+                });
+            }
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch 
+            {
+                return 0;
+            }
+
+            return ticket.Id;
         }
     }
 }

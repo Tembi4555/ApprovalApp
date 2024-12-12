@@ -35,12 +35,18 @@ namespace ApprovalApp.Application
 
             if(ticket.TicketApprovals == null || ticket.TicketApprovals.Count() == 0)
             {
-                return $"";
+                return $"Для заявкм {ticketId} не найдены очереди согласования";
             }
 
-            foreach(var ta in ticket.TicketApprovals)
+            if(ticket.TicketApprovals?.LastOrDefault()?.Status == "Прекращено")
             {
-                ta.UpdateStatusAndComment(status: "Прекращено", comment: reasonStopping);
+                return $"Для заявки {ticketId} уже установлен статус \"Прекращено\"";
+            }
+
+
+            foreach(var ta in ticket.TicketApprovals ?? new List<TicketApproval>())
+            {
+                ta.Update(status: "Прекращено", comment: reasonStopping);
             }
 
             string statusOperation = await UpdateTicketWithTicketsApprovalAsync(ticket);
@@ -58,9 +64,9 @@ namespace ApprovalApp.Application
             return ticket;
         }
 
-        public async Task<string> UpdateTicketWithTicketsApprovalAsync(Ticket ticket)
+        private async Task<string> UpdateTicketWithTicketsApprovalAsync(Ticket ticket)
         {
-            long statusOperation = _ticketsRepository.UpdateTicket(ticket);
+            long statusOperation = await _ticketsRepository.UpdateTicketAsync(ticket);
 
             if(statusOperation <= 0)
             {
@@ -68,5 +74,27 @@ namespace ApprovalApp.Application
             }
             return "ok";
         }
+
+        public async Task<string> ApprovingTicketTask(long idTicket, long idApproving, string status, string comment)
+        {
+            TicketApproval ta = await _ticketsRepository.GetTicketApprovalByIdTicketAndApproving(idTicket, idApproving);
+            
+            if(ta == null || ta.Status == "Прекращено" || ta.Status == "На доработку" || ta.Status == "Согласовано")
+            {
+                return $"Не найдена активная задача {idTicket}, для автора {idApproving}";
+            }
+
+            ta.Update(status, comment);
+
+            long statusOperation = await _ticketsRepository.UpdateTicketApprovalAsync(ta);
+
+            if (statusOperation <= 0)
+            {
+                return "Произошла ошибка при сохранении данных.";
+            }
+            return "ok";
+
+        }
+
     }
 }
