@@ -16,9 +16,9 @@ namespace ApprovalApp.API.Controllers
         }
 
         [HttpPost]
-        public async Task Login(string? returnUri, HttpContext context)
+        public async Task<IActionResult> Login(string? returnUrl, HttpContext context)
         {
-
+            return LocalRedirect(Url.GetLocalUrl(returnUrl));
         }
     }
 }
