@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace ApprovalApp.Domain.Abstractions
 {
+    /// <summary>
+    /// Интерфейс сервиса для работы с персонами
+    /// </summary>
     public interface IPersonsService
     {
         Task<List<Person>> GetAllPersonsAsync();

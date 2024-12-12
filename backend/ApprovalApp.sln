@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApprovalApp.API", "ApprovalApp.API\ApprovalApp.API.csproj", "{13DA66D2-EDB1-4439-A223-6A026352335E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApprovalApp.API", "ApprovalApp.API\ApprovalApp.API.csproj", "{13DA66D2-EDB1-4439-A223-6A026352335E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApprovalApp.Domain", "ApprovalApp.Domain\ApprovalApp.Domain.csproj", "{1B0ADD43-CF08-4896-B52C-2C70171592EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApprovalApp.Domain", "ApprovalApp.Domain\ApprovalApp.Domain.csproj", "{1B0ADD43-CF08-4896-B52C-2C70171592EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApprovalApp.Data", "ApprovalApp.Data\ApprovalApp.Data.csproj", "{F1226D66-06F4-4A01-9849-79E5BF4C9985}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApprovalApp.Data", "ApprovalApp.Data\ApprovalApp.Data.csproj", "{F1226D66-06F4-4A01-9849-79E5BF4C9985}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApprovalApp.Application", "ApprovalApp.Application\ApprovalApp.Application.csproj", "{936D6771-2573-4F36-93BD-9D8EE68C1861}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApprovalApp.Application", "ApprovalApp.Application\ApprovalApp.Application.csproj", "{936D6771-2573-4F36-93BD-9D8EE68C1861}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

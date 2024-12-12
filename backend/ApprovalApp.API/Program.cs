@@ -2,6 +2,7 @@ using ApprovalApp.Application;
 using ApprovalApp.Data;
 using ApprovalApp.Data.PersonsRepository;
 using ApprovalApp.Data.TicketsRepository;
+using ApprovalApp.Data.UsersRepositoty;
 using ApprovalApp.Domain.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -31,6 +32,8 @@ builder.Services.AddScoped<IPersonsService, PersonsService>();
 builder.Services.AddScoped<IPersonsPerository, PersonsRepository>();
 builder.Services.AddScoped<ITicketsRepository, TicketsRepository>();
 builder.Services.AddScoped<ITicketsService, TicketsService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IUsersRepository, UsersRepository>();
 
 var app = builder.Build();
 
@@ -41,6 +44,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

@@ -3,6 +3,7 @@ using System;
 using ApprovalApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApprovalApp.API.Migrations
 {
     [DbContext(typeof(ApprovalDbContext))]
-    partial class ApprovalDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241212042023_AddUserEntity")]
+    partial class AddUserEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.11");
@@ -102,26 +105,6 @@ namespace ApprovalApp.API.Migrations
                     b.HasIndex("IdAuthor");
 
                     b.ToTable("Tickets", (string)null);
-                });
-
-            modelBuilder.Entity("ApprovalApp.Data.Entities.UserEntity", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Password")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("PersonId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("ApprovalApp.Data.Entities.TicketApprovalEntity", b =>

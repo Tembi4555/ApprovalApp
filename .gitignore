@@ -568,3 +568,4 @@ $RECYCLE.BIN/
 /backend/ApprovalApp.Domain/obj/Debug/net8.0/ApprovalApp.Domain.GeneratedMSBuildEditorConfig.editorconfig
 /backend/ApprovalApp.Domain/obj/project.assets.json
 /backend/ApprovalApp.Domain/obj/project.nuget.cache
+/backend/ApprovalApp.API/obj/Debug/net8.0/ApprovalApp.API.MvcApplicationPartsAssemblyInfo.cs
