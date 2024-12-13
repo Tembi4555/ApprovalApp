@@ -15,10 +15,10 @@ namespace ApprovalApp.API.Controllers
             _authService = authService;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Login(string? returnUrl, HttpContext context)
-        {
-            return LocalRedirect(Url.GetLocalUrl(returnUrl));
-        }
+        //[HttpPost]
+        //public async Task<IActionResult> Login(string? returnUrl, HttpContext context)
+        //{
+        //    return LocalRedirect(Url.GetLocalUrl(returnUrl));
+        //}
     }
 }
