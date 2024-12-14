@@ -96,5 +96,11 @@ namespace ApprovalApp.Application
 
         }
 
+        public async Task<List<Ticket>> GetTicketsByIdAuthorAsync(long idAuthor)
+        {
+            List<Ticket> tickets = await _ticketsRepository.GetTicketsByIdAuthorAsync(idAuthor);
+
+            return tickets;
+        }
     }
 }

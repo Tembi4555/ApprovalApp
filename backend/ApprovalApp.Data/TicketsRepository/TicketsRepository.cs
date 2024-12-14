@@ -104,6 +104,37 @@ namespace ApprovalApp.Data.TicketsRepository
             return ticket;
         }
 
+        public async Task<List<Ticket>> GetTicketsByIdAuthorAsync(long idAuthor)
+        {
+            List<TicketEntity> ticketEntities = await _context.Tickets
+                .Where(t => t.IdAuthor == idAuthor)
+                .Include(t => t.Person)
+                .Include(t => t.TicketApprovalEntities)
+                .ToListAsync();
+            if (ticketEntities == null)
+                return null;
+
+            List<Ticket> tickets = ticketEntities.Select(t => t.Mapping()).ToList();
+
+            List<TicketApproval> ticketApprovals = new List<TicketApproval>();
+
+            foreach (var ticketEntity in ticketEntities)
+            {
+                foreach (var ta in ticketEntity.TicketApprovalEntities)
+                {
+                    ticketApprovals.Add(ta.Mapping());
+                }
+
+                var tas = tickets.FirstOrDefault(t => t.Id == ticketEntity.Id)?.TicketApprovals;
+
+                tas?.AddRange(ticketApprovals);
+
+                ticketApprovals.Clear();
+            }
+
+            return tickets;
+        }
+
         public async Task<long> UpdateTicketApprovalAsync(TicketApproval ta)
         {
             try

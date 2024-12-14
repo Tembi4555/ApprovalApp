@@ -329,7 +329,10 @@
       "System.Memory/4.5.3": {},
       "ApprovalApp.Domain/1.0.0": {
         "runtime": {
-          "ApprovalApp.Domain.dll": {}
+          "ApprovalApp.Domain.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

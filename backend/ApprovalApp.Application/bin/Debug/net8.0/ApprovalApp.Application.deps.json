@@ -333,12 +333,18 @@
           "Microsoft.EntityFrameworkCore.Sqlite": "8.0.11"
         },
         "runtime": {
-          "ApprovalApp.Data.dll": {}
+          "ApprovalApp.Data.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "ApprovalApp.Domain/1.0.0": {
         "runtime": {
-          "ApprovalApp.Domain.dll": {}
+          "ApprovalApp.Domain.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

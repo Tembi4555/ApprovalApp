@@ -111,7 +111,23 @@ namespace ApprovalApp.API.Controllers
             return Ok();
         }
 
-        // Все заявки автор.
+
+        /// <summary>
+        /// Все заявки автора.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("outcomingtickets/{idAuthor}")]
+        public async Task<ActionResult> GetTicketsByIdAuthorAsync(long idAuthor)
+        {
+            List<Ticket> tickets = await _ticketsService.GetTicketsByIdAuthorAsync(idAuthor);
+
+            List<TicketsResponse> response = tickets
+                .Select(t => new TicketsResponse(t.Id, t.Title, t.Description,
+                 t.IdAuthor, t.TicketApprovals?.LastOrDefault()?.Status))
+                .ToList();
+
+            return Ok(response);
+        }
 
         // Все заявки на согласование.
 

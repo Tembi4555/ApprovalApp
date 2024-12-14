@@ -33,5 +33,12 @@ namespace ApprovalApp.Domain.Abstractions
         /// Изменение статуса задачи по заявке на согласование
         /// </summary>
         Task<string> ApprovingTicketTask(long idTicket, long idApproving, string status, string comment);
+
+        /// <summary>
+        /// Получить список исходщих заявок автора
+        /// </summary>
+        /// <param name="idAuthor"></param>
+        /// <returns></returns>
+        Task<List<Ticket>> GetTicketsByIdAuthorAsync(long idAuthor);
     }
 }
