@@ -9,6 +9,7 @@
         string? Title,
         string? Description,
         long IdAuthor, 
-        string? Status
+        string? Status,
+        string? AuthorName = null
     );
 }

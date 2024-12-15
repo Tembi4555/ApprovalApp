@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApprovalApp.Data", "Approva
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApprovalApp.Application", "ApprovalApp.Application\ApprovalApp.Application.csproj", "{936D6771-2573-4F36-93BD-9D8EE68C1861}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{F6A67048-E331-42C1-88F9-D334216A1A1D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{936D6771-2573-4F36-93BD-9D8EE68C1861}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{936D6771-2573-4F36-93BD-9D8EE68C1861}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{936D6771-2573-4F36-93BD-9D8EE68C1861}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6A67048-E331-42C1-88F9-D334216A1A1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6A67048-E331-42C1-88F9-D334216A1A1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6A67048-E331-42C1-88F9-D334216A1A1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6A67048-E331-42C1-88F9-D334216A1A1D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

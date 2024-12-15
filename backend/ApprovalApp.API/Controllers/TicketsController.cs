@@ -113,11 +113,11 @@ namespace ApprovalApp.API.Controllers
 
 
         /// <summary>
-        /// Все заявки автора.
+        /// Все исходящие заявки автора.
         /// </summary>
         /// <returns></returns>
-        [HttpGet("outcomingtickets/{idAuthor}")]
-        public async Task<ActionResult> GetTicketsByIdAuthorAsync(long idAuthor)
+        [HttpGet("outgoing/{idAuthor}")]
+        public async Task<ActionResult> GetOutgoingTicketsByIdAuthorAsync(long idAuthor)
         {
             List<Ticket> tickets = await _ticketsService.GetTicketsByIdAuthorAsync(idAuthor);
 
@@ -129,7 +129,23 @@ namespace ApprovalApp.API.Controllers
             return Ok(response);
         }
 
-        // Все заявки на согласование.
+        /// <summary>
+        /// Все заявки на согласование
+        /// </summary>
+        /// <param name="approvingId"></param>
+        /// <returns></returns>
+        [HttpGet("incoming/{approvingId}")]
+        public async Task<ActionResult> GetIncomingTicketsByIdApproving(long approvingId)
+        {
+            List<TicketApproval> tickets = await _ticketsService.GetActiveIncomingTicketsByIdApproving(approvingId);
+
+            List<TicketsResponse> response = tickets
+                .Select(t => new TicketsResponse(t.Ticket?.Id ?? -1, t.Ticket?.Title, t.Ticket?.Description,
+                 t.Ticket?.IdAuthor ?? -1, t.Status, t.Ticket?.AuthorPerson?.FullName))
+                .ToList();
+
+            return Ok(response);
+        }
 
         // Посмотреть все круги заявки.
     }

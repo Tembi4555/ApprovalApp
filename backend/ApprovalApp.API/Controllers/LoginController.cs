@@ -15,6 +15,14 @@ namespace ApprovalApp.API.Controllers
             _authService = authService;
         }
 
+        [HttpGet]
+        public async Task<ActionResult> GetUsers()
+        {
+            List<User> users = await _authService.GetUsersAsync();
+
+            return Ok(users);
+        }
+
         //[HttpPost]
         //public async Task<IActionResult> Login(string? returnUrl, HttpContext context)
         //{

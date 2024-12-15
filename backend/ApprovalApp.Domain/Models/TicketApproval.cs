@@ -17,6 +17,8 @@
             NumberQueue = numberQueue;
             ModifiedDate = modifiedDate;
             Comment = coment;
+            ApprovingPerson = approvingPerson;
+            Ticket = ticket;
         }
 
         public long Id { get; }

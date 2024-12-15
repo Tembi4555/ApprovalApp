@@ -102,5 +102,12 @@ namespace ApprovalApp.Application
 
             return tickets;
         }
+
+        public async Task<List<TicketApproval>> GetActiveIncomingTicketsByIdApproving(long approvingId)
+        {
+            List<TicketApproval> tickets = await _ticketsRepository.GetActiveIncomingTicketsByIdApproving(approvingId);
+
+            return tickets;
+        }
     }
 }

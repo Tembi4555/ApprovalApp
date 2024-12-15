@@ -28,7 +28,7 @@ export default function Header() {
 
     return(
       <HeaderContainer>
-            <img src={logo} alt=""/>
+          <img src={logo} alt=""/>
           <h3>Сервис согласования</h3>
           <span>Время сейчас: { now.toLocaleTimeString() }</span>
       </HeaderContainer>

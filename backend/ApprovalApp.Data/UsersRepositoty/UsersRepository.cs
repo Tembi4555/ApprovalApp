@@ -32,5 +32,16 @@ namespace ApprovalApp.Data.UsersRepositoty
 
             return user;
         }
+
+        public async Task<List<User>> GetUsersAsync()
+        {
+            List<UserEntity> userEntities = await _context.Users.AsNoTracking().ToListAsync();
+
+            List<User> users = userEntities
+                .Select(u => User.Create(id: u.Id, userName: u.UserName, personId: u.PersonId).User)
+                .ToList();
+
+            return users;
+        }
     }
 }

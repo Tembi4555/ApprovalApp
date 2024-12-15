@@ -59,6 +59,20 @@ namespace ApprovalApp.Data.TicketsRepository
             return te.Id;
         }
 
+        public async Task<List<TicketApproval>> GetActiveIncomingTicketsByIdApproving(long approvingId)
+        {
+            List<TicketApprovalEntity> ticketsApprovalEntities = await _context.TicketsApprovals
+                .Where(t => t.ApprovingPersonId == approvingId 
+                    && (t.Status == "Новая" || t.Status == "На доработку"))
+                .Include(t => t.Ticket).ThenInclude(p => p.Person)
+                .Include(p => p.Person)
+                .ToListAsync();
+
+            List<TicketApproval> tickets = ticketsApprovalEntities.Select(t => t.Mapping()).ToList();
+
+            return tickets;
+        }
+
         public async Task<TicketApproval> GetTicketApprovalByIdTicketAndApproving(long idTicket, long idApproving)
         {
             TicketApprovalEntity? tae = await _context.TicketsApprovals

@@ -13,5 +13,6 @@ namespace ApprovalApp.Domain.Abstractions
     public interface IUsersRepository
     {
         Task<User> GetUserAsync(string? login, string? password);
+        Task<List<User>> GetUsersAsync();
     }
 }

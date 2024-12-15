@@ -22,5 +22,10 @@ namespace ApprovalApp.Application
         {
             return await _usersRepository.GetUserAsync(login, password);
         }
+
+        public async Task<List<User>> GetUsersAsync()
+        {
+            return await _usersRepository.GetUsersAsync();
+        }
     }
 }
